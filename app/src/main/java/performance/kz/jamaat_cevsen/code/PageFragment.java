@@ -34,12 +34,13 @@ public class PageFragment extends Fragment implements View.OnClickListener
     private static final int[] pages = {R.drawable.p1, R.drawable.p2, R.drawable.p3, R.drawable.p4, R.drawable.p5};
 
     // First - marginTop, second - height of 1st bab, third - height of 2nd bab
-    private static final int[][] dimensions = {{142,180,250}};
+    private static final int[][] dimensions = {{142,180,250},{60,250,250},{55,170,340},{60,250,250},{95,170,260}};
+
 
     static PageFragment newInstance(int position)
     {
-        PageFragment frag=new PageFragment();
-        Bundle args=new Bundle();
+        PageFragment frag = new PageFragment();
+        Bundle args = new Bundle();
 
         args.putInt(KEY_POSITION, position);
         frag.setArguments(args);
@@ -47,15 +48,11 @@ public class PageFragment extends Fragment implements View.OnClickListener
         return(frag);
     }
 
-    static String getTitle(Context ctxt, int position)
-    {
-        return(String.format(ctxt.getString(R.string.hint), position + 1));
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         View result = inflater.inflate(R.layout.page, container, false);
+
         ImageView page = (ImageView)result.findViewById(R.id.page);
         TextView pageNumber = (TextView) result.findViewById(R.id.pageNumber);
         Button buttonBab1 = (Button) result.findViewById(R.id.buttonBab1);
@@ -66,36 +63,17 @@ public class PageFragment extends Fragment implements View.OnClickListener
         page.setImageResource(pages[position]);
         pageNumber.setText((position + 1) + "");
 
-        /*
         buttonBab1.setOnClickListener(this);
-        LayoutParams params1 = new LayoutParams(LayoutParams.MATCH_PARENT, dptopx(dimensions[0][1]));
-        params1.setMargins(0, dptopx(dimensions[0][0]), 0, 0);
+        LayoutParams params1 = new LayoutParams(LayoutParams.MATCH_PARENT, dptopx(dimensions[position][1]));
+        params1.setMargins(0, dptopx(dimensions[position][0]), 0, 0);
         buttonBab1.setLayoutParams(params1);
-       // buttonBab1.setBackgroundColor(Color.TRANSPARENT);
 
         buttonBab2.setOnClickListener(this);
-        buttonBab2.setHeight(dptopx(dimensions[0][2]));
-        // buttonBab2.setBackgroundColor(Color.TRANSPARENT);
-        */
+        LayoutParams params2 = (LayoutParams) buttonBab2.getLayoutParams();
+        params2.height = dptopx(dimensions[position][2]);
+        buttonBab2.setLayoutParams(params2);
+
         return(result);
-    }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        Button buttonBab1 = (Button) view.findViewById(R.id.buttonBab1);
-        Button buttonBab2 = (Button) view.findViewById(R.id.buttonBab2);
-
-        buttonBab1.setOnClickListener(this);
-        LayoutParams params1 = new LayoutParams(LayoutParams.MATCH_PARENT, dptopx(dimensions[0][1]));
-        params1.setMargins(0, dptopx(dimensions[0][0]), 0, 0);
-        buttonBab1.setLayoutParams(params1);
-        // buttonBab1.setBackgroundColor(Color.TRANSPARENT);
-
-        buttonBab2.setOnClickListener(this);
-        buttonBab2.setHeight(dptopx(dimensions[0][2]));
-        // buttonBab2.setBackgroundColor(Color.TRANSPARENT);
     }
 
     public void onClick(View v)

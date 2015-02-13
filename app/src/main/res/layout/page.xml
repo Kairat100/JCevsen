@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_pagefragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -25,12 +26,15 @@
     android:id="@+id/buttonBab1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/button_bab"
 />
 
 <Button
     android:id="@+id/buttonBab2"
     android:layout_below="@id/buttonBab1"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent"
+    android:background="@drawable/button_bab"
+/>
 
 </RelativeLayout>

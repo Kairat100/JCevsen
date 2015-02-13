@@ -1,6 +1,7 @@
 package performance.kz.jamaat_cevsen.ui;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
@@ -12,17 +13,41 @@ import performance.kz.jamaat_cevsen.code.SampleAdapter;
 
 public class Cevsen extends Activity {
 
+    private static final String SAVED_TEXT = "current_position";
+    private SharedPreferences sPref;
+
+    private ViewPager pager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cevsen);
 
-        ViewPager pager=(ViewPager)findViewById(R.id.pager);
+        pager = (ViewPager)findViewById(R.id.pager);
         pager.setAdapter(buildAdapter());
     }
 
     private PagerAdapter buildAdapter() {
         return(new SampleAdapter(this, getFragmentManager()));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        sPref = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor ed = sPref.edit();
+        ed.putInt(SAVED_TEXT, pager.getCurrentItem());
+        ed.commit();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        sPref = getPreferences(MODE_PRIVATE);
+        int current_position = sPref.getInt(SAVED_TEXT, 0);
+        pager.setCurrentItem(current_position);
     }
 
     @Override

@@ -11,12 +11,10 @@ import android.support.v13.app.FragmentPagerAdapter;
 
 public class SampleAdapter extends FragmentPagerAdapter
 {
-    Context ctxt=null;
 
-    public SampleAdapter(Context ctxt, FragmentManager mgr)
+    public SampleAdapter(Context context, FragmentManager mgr)
     {
         super(mgr);
-        this.ctxt=ctxt;
     }
 
     @Override
@@ -29,11 +27,5 @@ public class SampleAdapter extends FragmentPagerAdapter
     public Fragment getItem(int position)
     {
         return(PageFragment.newInstance(position));
-    }
-
-    @Override
-    public String getPageTitle(int position)
-    {
-        return(PageFragment.getTitle(ctxt, position));
     }
 }
