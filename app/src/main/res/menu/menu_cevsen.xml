@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="performance.kz.jamaat_cevsen.ui.Cevsen">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_goToBegging" android:title="@string/goToBeggining" app:showAsAction="never" />
+    <item android:id="@+id/action_goToBab" android:title="@string/goToBab" app:showAsAction="never" />
+    <item android:id="@+id/action_goToDua" android:title="@string/goToDua" app:showAsAction="never" />
 </menu>

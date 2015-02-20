@@ -1,8 +1,28 @@
 <resources>
     <string name="app_name">Jamaat Cevsen</string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_cevsen">Cevsen</string>
     <string name="hint">hint</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="goToBeggining">Go to begging</string>
+    <string name="goToBab">Go to bab</string>
+    <string name="goToDua">Go to dua</string>
+
+    <string name="title_goToBeggining">Go to begging</string>
+    <string name="message_goToBeggining">Are you sure to go to begging?</string>
+    <string name="button_yes">Yes</string>
+    <string name="button_no">No</string>
+
+    <string name="title_goToDua">Go to dua</string>
+    <string name="message_goToDua">Are you sure to go to dua?</string>
+
+    <string name="title_goToBab">Go to bab</string>
+    <string name="message_goToBab">Enter number of bab:</string>
+    <string name="button_ok">Ok</string>
+    <string name="button_cancel">Cancel</string>
+
+    <string name="title_wrongNBab">Wrong number of Bab</string>
+    <string name="message_wrongNBab">You have entered wrong number!\n Enter number between 1 -100.</string>
 </resources>

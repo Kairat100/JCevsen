@@ -1,12 +1,16 @@
 package performance.kz.jamaat_cevsen.ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import performance.kz.jamaat_cevsen.R;
 import performance.kz.jamaat_cevsen.code.SampleAdapter;
@@ -65,10 +69,81 @@ public class Cevsen extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_goToBegging)
+        {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(R.string.title_goToBeggining)
+                    .setMessage(R.string.message_goToBeggining)
+                    .setPositiveButton(R.string.button_yes, new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            pager.setCurrentItem(0);
+                        }
+                    })
+                    .setNegativeButton(R.string.button_no, null)
+                    .show();
+        }
+
+        if (id == R.id.action_goToBab)
+        {
+            final EditText input = new EditText(this);
+            input.setInputType(InputType.TYPE_CLASS_NUMBER);
+
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .setTitle(R.string.title_goToBab)
+                    .setMessage(R.string.message_goToBab)
+                    .setView(input)
+                    .setPositiveButton(R.string.button_ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            try {
+                                int count = Integer.parseInt(input.getText().toString());
+                                if(0 > count || count > 100)
+                                {
+                                    WrongNumberofBabDialog();
+                                }
+                                pager.setCurrentItem((count-1)/2);
+                            } catch (NumberFormatException nfe) {
+                                System.out.println("Could not parse " + nfe);
+                            }
+                        }
+                    })
+                    .setNegativeButton(R.string.button_cancel, null)
+                    .show();
+        }
+
+        if (id == R.id.action_goToDua)
+        {
+            new AlertDialog.Builder(this)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .setTitle(R.string.title_goToDua)
+                    .setMessage(R.string.message_goToDua)
+                    .setPositiveButton(R.string.button_yes, new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            pager.setCurrentItem(50);
+                        }
+                    })
+                    .setNegativeButton(R.string.button_no, null)
+                    .show();
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void WrongNumberofBabDialog()
+    {
+        new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(R.string.title_wrongNBab)
+                .setMessage(R.string.message_wrongNBab)
+                .setPositiveButton(R.string.button_ok, null)
+                .show();
     }
 }
